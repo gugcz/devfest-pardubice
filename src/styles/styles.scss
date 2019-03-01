@@ -1,0 +1,270 @@
+@import "@material/typography/mdc-typography";
+@import "./colors.scss";
+@import "./variables.scss";
+@import "./buttons.scss";
+@import "./speakers.scss";
+@import "./schedule.scss";
+@import "./dialog.scss";
+@import "./info.scss";
+
+body {
+    background: $body-background;
+    color: $body-color;
+    margin: 0;
+}
+
+.header {
+    background-image: url(../images/ostrava.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    &-container {
+        display: flex;
+        flex-direction: column;
+        padding: $mobile-header-padding;
+        min-height: calc(100vh - 48px);
+        background-color: rgba($color: #000000, $alpha: 0.4);
+    
+        .header-title {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            grid-column-gap: 8px;
+            width: 100%;
+    
+            .header-logo-container .main-logo {
+                width: 100%;
+            }
+    
+            .header-title-headings {
+                .place, .date {
+                    text-align: right;
+                    line-height: unset;
+                }
+        
+                .date {
+                    font-size: $mobile-date-font-size;
+                    margin: 0;
+                }
+            
+                .place {
+                    font-size: $mobile-place-font-size;
+                    line-height: unset;
+                    margin: 4px 0 0 0;
+                }
+            }
+        }
+    
+        .header-content {
+            display: grid;
+            flex: 1;
+            justify-content: center;
+            align-content: flex-end;
+    
+            .register-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+    
+                .register-button {
+                    margin: 0 0 20px 0;
+                }
+    
+                .info-text {
+                    margin: 0;
+                    font-size: 14px;
+                    line-height: unset;
+                    text-align: center;
+                }
+
+                .arrow-down {
+                    font-size: 48px;
+                    width: 72px;
+                    height: 72px;
+                }
+            }
+        }
+    }
+}
+
+.section .section-title {
+    text-align: center;
+    margin: 0;
+    font-size: $mobile-section-title-font-size;
+    line-height: $mobile-section-title-font-size;
+    color: $black-text-color;
+}
+
+
+.footer {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    padding: $mobile-footer-padding;
+    color: $dark-text-color;
+
+    .organizer-container {
+        display: grid;
+        justify-content: center;
+
+        .organizer-title {
+            margin: 16px;
+            font-size: $mobile-organizer-font-size;
+            line-height: $mobile-organizer-font-size;
+            text-align: center;
+        }
+    
+        .organizer-logo {
+            width: 100%;
+            max-width: 360px;
+        }
+    }
+
+    .partners-container {
+        display: grid;
+        justify-content: center;
+        margin-top: 32px;
+
+        .partner-title {
+            margin: 16px;
+            font-size: $mobile-organizer-font-size;
+            line-height: $mobile-organizer-font-size;
+            text-align: center;
+        }
+    
+        .logos-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            .logo-container {
+                display: flex;
+                justify-content: center;
+                margin: 16px;
+                .logo {
+                    width: 100%;
+                    max-width: 360px;
+                    max-height: 120px;
+                }
+            }            
+        }
+    }
+
+    .contact-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 16px;
+        padding-top: 32px;
+
+        .buttons-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-gap: 16px;
+            justify-items: center;
+
+            .button {
+                max-width: 360px;
+            }
+        }
+
+        .contact, .media-contact {
+            margin: 0;
+            text-align: center;
+
+            .link {
+                color: $dark-text-color;
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 425px) {
+    .header .header-container {
+        min-height: calc(100vh - 72px);
+        padding: $tablet-header-padding;
+
+        .header-title {
+            grid-template-columns: 180px 1fr;
+        }
+
+        .header-content .register-container .info-text {
+            font-size: 18px;
+        }
+    }
+
+    .footer .organizer-title {
+        font-size: $tablet-organizer-font-size;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .header .header-container {
+        min-height: calc(100vh - 100px);
+        padding-bottom: $tablet-header-bottom-padding;
+
+        .header-title {
+            grid-template-columns: 250px 1fr;
+    
+            .header-title-headings {
+                .date {
+                    font-size: $tablet-date-font-size;
+                }
+            
+                .place {
+                    font-size: $tablet-place-font-size;
+                    margin-top: 8px;
+                }
+            }
+        }
+    }
+
+    .footer {
+        .partners-container .logos-container {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        .organizer-title {
+            font-size: $desktop-organizer-font-size;
+            line-height: $desktop-organizer-font-size;
+        }
+
+        .contact-container .buttons-container {
+            justify-self: center;
+            grid-template-columns: 320px 320px;
+
+            .become-a-partner-button {
+                justify-self: flex-end;
+            }
+
+            .code-of-conduct-button {
+                justify-self: flex-start;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .header .header-container {
+        .header-title {
+            grid-template-columns: 300px 1fr;
+    
+            .header-title-headings {
+                .date {
+                    font-size: $desktop-date-font-size;
+                }
+            
+                .place {
+                    font-size: $desktop-place-font-size;
+                    margin-top: 12px;
+                }
+            }
+        }
+    }
+
+    .footer .partners-container {
+        max-width: 912px;
+        .logos-container .logo-container{
+            margin: 32px;
+        }
+    }
+}

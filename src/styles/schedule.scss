@@ -1,0 +1,199 @@
+@import "@material/card/mdc-card";
+@import "./colors.scss";
+@import "./variables.scss";
+@import "./topics.scss";
+
+.schedule-section {
+    display: grid;
+    justify-content: center;
+    color: $black-text-color;
+    min-height: calc(100vh - 64px);
+    justify-items: center;
+
+    .schedule-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin-top: 32px;
+        padding: 0 16px;
+        width: calc(100% - 32px);
+
+        .talks-container {
+            display: grid;
+            grid-gap: 16px;
+
+            .schedule-item, .talk {
+                box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+                border-radius: 24px 8px;
+                padding: 16px;
+            }
+
+            .schedule-item {
+                cursor: default;
+                grid-row: 1;
+
+                .item-name {
+                    font-size: 1.25rem;
+                    line-height: 1.25rem;
+                    text-align: center;
+                    font-weight: 400;
+                    margin: 0;
+                }
+
+                &.track {
+                    border: none;
+                    box-shadow: none;
+                }
+            }
+
+            .talk {
+                &-name {
+                    font-size: 1.25rem;
+                    line-height: 1.25rem;
+                    margin: 0 0 4px 0;
+                    font-weight: 400;
+                }
+
+                .mobile-description .mobile-description-text {
+                    margin: 8px 0 4px;
+                    font-weight: bold;
+                }
+
+                .description .description-text {
+                    margin: 0 0 8px;
+                }
+    
+                .speakers-container {
+                    display: grid;
+                    flex: 1;
+                    align-items: flex-end;
+                    grid-gap: 8px;
+                    grid-template-columns: 1fr;
+                    
+                    .speaker-container {
+                        display: flex;
+                        align-items: center;
+                        flex-direction: row;
+
+                        .speaker-photo {
+                            height: 48px;
+                            border-radius: 50%;
+                        }
+        
+                        .speaker-text {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            margin-left: 8px;
+                            margin-bottom: 7px;
+        
+                            .name {
+                                font-size: 1.1rem;
+                                line-height: 1.1rem;
+                                margin: 0 0 4px 0;
+                            }
+                            
+                            .position {
+                                margin: 0;
+                                font-size: 0.85rem;
+                                line-height: 0.85rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .times-container {
+            display: none;
+        }
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .schedule-section .schedule-container .talks-container .talk .speakers-container-2 {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .no-mobile {
+        display: none;
+    }
+    .schedule-section .schedule-container .talks-container {
+        .full-column {
+            height: 57px;
+            @for $i from 1 through 18 {
+                &.mobile-row-#{$i} {
+                    grid-row: $i / span 2;
+                }
+            } 
+        }
+
+        @for $i from 1 through 18 {
+            .mobile-row-#{$i} {
+                grid-row: $i;
+            }
+        }
+    }    
+}
+
+@media screen and (min-width: 768px) {
+    .schedule-section .schedule-container {
+        grid-template-columns: 80px 1fr;
+        max-width: 656px;
+        width: 100%;
+        position: relative;
+        left: -40px;
+
+        .talks-container {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 57px 57px 57px 1fr 1fr 57px 1fr 1fr 57px 57px;
+
+            .full-column {
+                grid-column: 1 / span 2;
+            }
+
+            .mobile-description {
+                display: none;
+            }
+
+            .column-1 {
+                grid-column: 1;
+            }
+
+            .column-2 {
+                grid-column: 2;
+            }
+            
+            @for $i from 1 through 10 {
+                .row-#{$i} {
+                    grid-row: $i;
+                }
+            }
+
+            @for $i from 2 through 10 {
+                .row-end-#{$i} {
+                    grid-row-end: $i;
+                }
+            }
+        }
+    
+        .times-container {
+            display: grid;
+            grid-template-rows: 57px 57px 57px 1fr 1fr 57px 1fr 1fr 57px 57px;
+            grid-row-gap: 16px;
+    
+            .time {
+                margin: 16px 0;
+                font-size: 1.25rem;
+                line-height: 1.25rem;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .schedule-section .schedule-container {
+        max-width: 912px;
+    }
+}

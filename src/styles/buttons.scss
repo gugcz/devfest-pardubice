@@ -1,0 +1,32 @@
+@import "@material/button/mdc-button";
+@import "./colors.scss";
+
+.button {
+    @include mdc-button-shape-radius(24px);
+    @include mdc-button-outline-color($primary-button-text-color);
+
+    font-size: 16px;
+
+    .mdc-button__label {
+        color: $primary-button-text-color;
+        text-transform: none;
+    }
+}
+
+.button.secondary-button {
+    @include mdc-button-container-fill-color($secondary-button-color);
+    @include mdc-button-outline-color($secondary-text-color);
+
+    .mdc-button__label {
+        color: $secondary-text-color;
+    }
+}
+
+@media screen and (min-width: 425px) {
+    .button {
+        @include mdc-button-shape-radius(38px);
+        padding: 0 18px;
+        font-size: 20px;
+        height: 44px;
+    }
+}

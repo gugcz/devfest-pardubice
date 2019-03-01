@@ -1,0 +1,218 @@
+@import "@material/dialog/mdc-dialog";
+@import "@material/icon-button/mdc-icon-button";
+@import "./topics.scss";
+
+.speaker-dialog .mdc-dialog__container {
+    display: grid; 
+    width: 100%;
+    
+    .mdc-dialog__surface {
+        display: grid;
+        grid-template-columns: 1fr;
+        min-width: calc(100vw - 16px);
+        max-width: 100vw;
+        min-height: 100vh;
+        max-height: 100vh;
+        overflow-y: auto;
+        padding: 0 16px;
+        border-radius: 0;
+    
+        .dialog-header {
+            display: flex;
+            justify-content: flex-end;
+        }
+    
+        .dialog-body {
+            display: grid;
+            grid-template-columns: 1fr;
+            align-items: center;
+            justify-items: center;
+            margin-bottom: 16px;
+
+            .speaker-info {
+                display: grid;
+                grid-template-columns: 1fr;
+                align-items: center;
+                justify-items: center;
+
+                .speaker-photo {
+                    height: 200px;
+                    width: 200px;
+                    border-radius: 50%;
+                }
+        
+                .speaker-name {
+                    margin: 16px 0 0 0;
+                    font-size: 1.75rem;
+                    line-height: 1.75rem;
+                }
+        
+                .speaker-position {
+                    margin: 12px 0 16px 0;
+                    font-size: 1.25rem;
+                    line-height: 1.75rem;
+                    text-align: center;
+                }
+        
+                .speaker-company {
+                    height: 36px;
+                }
+        
+                .speaker-about {
+                    display: flex;
+                    width: 100%;
+                    max-width: 100%;
+        
+                    .text {
+                        text-align: left;
+                        justify-content: center;
+                        overflow-wrap: break-word;
+                    }
+                }
+            }
+
+            .talk-container {
+                width: 100%;
+
+                .talk-title {
+                    margin: 0;
+                    font-size: 1.5rem;
+                    line-height: 1.5rem;
+                }
+
+                .talk-level {
+                    margin: 12px 0;
+                    font-size: 1rem;
+                    line-height: 1rem;
+                }
+
+                .topics-container {
+                    display: flex;
+                    flex-direction: row;
+                    height: 16px;
+                    margin: 4px 0;
+                
+                    .topic {
+                        display: flex;
+                        align-items: center;
+                        flex-direction: row;
+                        margin-left: 10px;
+                
+                        &-dot {
+                            border-radius: 6px;
+                            width: 10px;
+                            height: 10px;
+                            margin-right: 4px;
+                            margin-bottom: 1px;
+                        }
+                
+                        &-name {
+                            margin: 0;
+                        }
+                    }
+                
+                    .topic:first-child {
+                        margin-left: 0;
+                    }
+                }
+            }
+
+            .co-speaker-text {
+                margin: 0 0 12px 0;
+                font-size: 1.5rem;
+                line-height: 1.5rem;
+            }
+
+            .talk-speakers-container {
+                display: flex;
+                flex-direction: column;
+
+                .speaker-container {
+                    display: flex;
+                    align-items: center;
+                    flex-direction: row;
+
+                    &:first-child {
+                        margin-bottom: 16px;
+                    }
+
+                    .speaker-photo {
+                        height: 48px;
+                        border-radius: 50%;
+                    }
+    
+                    .speaker-text {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        margin-left: 8px;
+                        margin-bottom: 7px;
+    
+                        .name {
+                            font-size: 1.1rem;
+                            line-height: 1.1rem;
+                            margin: 0 0 4px 0;
+                        }
+                        
+                        .position {
+                            margin: 0;
+                            font-size: 0.85rem;
+                            line-height: 0.85rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (min-width: 400px) {
+    .speaker-dialog .mdc-dialog__container {
+        .mdc-dialog__surface {
+            min-width: 400px;
+            max-width: 400px;
+            min-height: 200px;
+            height: unset;
+            padding: 4px;
+            border-radius: 4px;
+
+            .dialog-body {
+                padding: 0 16px;
+
+                .speaker-about .text {
+                    text-align: justify;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .speaker-dialog .mdc-dialog__container {
+        .mdc-dialog__surface {
+            min-width: 500px;
+            max-width: 500px;
+            height: unset;
+            padding: 4px;
+            border-radius: 4px;
+
+            .dialog-body {
+                padding: 0 16px;
+
+                .talk-speakers-container {
+                    flex-direction: row;
+
+                    .speaker-container:first-child {
+                        margin-right: 16px;
+                        margin-bottom: 0;
+                    }
+                }
+
+                .speaker-about .text {
+                    text-align: justify;
+                }
+            }
+        }
+    }
+}

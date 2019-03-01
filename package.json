@@ -1,0 +1,46 @@
+{
+  "name": "mini-devfest-ostrava",
+  "version": "1.0.0",
+  "description": "Web page of miniDevFest Ostrava 2019.",
+  "repository": "git+https://github.com/gugcz/mini-devfest-ostrava.git",
+  "scripts": {
+    "build": "webpack --config webpack/webpack.prod.js",
+    "start": "webpack-dev-server --open --config webpack/webpack.dev.js"
+  },
+  "keywords": [
+    "GDG",
+    "Ostrava",
+    "GUG.cz",
+    "miniDevFest"
+  ],
+  "author": "Václav Pavlíček",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gugcz/mini-devfest-ostrava/issues"
+  },
+  "homepage": "https://github.com/gugcz/mini-devfest-ostrava#readme",
+  "devDependencies": {
+    "@material/button": "^0.42.0",
+    "clean-webpack-plugin": "^1.0.0",
+    "copy-webpack-plugin": "^4.6.0",
+    "css-loader": "^2.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.5.0",
+    "node-sass": "^4.11.0",
+    "resolve-url-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10",
+    "webpack-merge": "^4.1.5"
+  },
+  "dependencies": {
+    "@material/card": "^0.42.0",
+    "@material/dialog": "^0.43.0",
+    "@material/icon-button": "^0.43.0",
+    "@material/typography": "^0.42.0",
+    "firebase-tools": "^6.3.1",
+    "global": "^4.3.2"
+  }
+}
