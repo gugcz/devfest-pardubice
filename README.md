@@ -1,5 +1,5 @@
-# miniDevFest Ostrava 2019
-The official website of miniDevFest Ostrava 2019
+# DevFest Local Pardubice 2019
+The official website of DevFest Local Pardubice 2019
 
 ## Requirements
 
@@ -8,7 +8,7 @@ The official website of miniDevFest Ostrava 2019
 
 ## Local server
 
-Run `yarn start` to start local development server. Your server will run on `http://localhost:8000/`.
+Run `yarn start` to start local development server. Your server will run on `http://localhost:8080/`.
 
 ## Deployment
 

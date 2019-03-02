@@ -75,6 +75,12 @@ body {
                     font-size: 14px;
                     line-height: unset;
                     text-align: center;
+                    p {
+                        margin: 6px 0;
+                        &.question {
+                            font-weight: 700;
+                        }
+                    }
                 }
 
                 .arrow-down {

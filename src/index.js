@@ -23,11 +23,6 @@ const talks = {};
 const scrollDownButton = document.getElementById('scroll-down');
 scrollDownButton.onclick = scrollDownToSpeakers;
 
-fetchSpeakersAndTalks();
-fetchTimes();
-fetchSchedule();
-fetchPartners();
-
 function openDialog(id, isTalk) {
     const dialog = new MDCDialog(document.querySelector('.mdc-dialog'));
     dialog.listen('MDCDialog:opened', () => {
