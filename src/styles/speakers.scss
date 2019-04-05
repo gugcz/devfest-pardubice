@@ -5,7 +5,6 @@
     background: $body-background;
     color: $black-text-color;
     padding: $mobile-speakers-section-padding;
-    min-height: calc(100vh - 64px);
 
     .speakers-container {
         display: grid;
@@ -53,17 +52,5 @@
 @media screen and (min-width: 600px) {
     .speakers-section .speakers-container {
         grid-template-columns: repeat(2, $speaker-card-width);
-    }
-}
-
-@media screen and (min-width: 832px) {
-    .speakers-section .speakers-container {
-        grid-template-columns: repeat(3, $speaker-card-width);
-    }
-}
-
-@media screen and (min-width: 1136px) {
-    .speakers-section .speakers-container {
-        grid-template-columns: repeat(4, $speaker-card-width);
     }
 }
