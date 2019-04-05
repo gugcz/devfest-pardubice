@@ -6,6 +6,10 @@
     color: $black-text-color;
     padding: $mobile-speakers-section-padding;
 
+    .more-speakers {
+        text-align: center;
+    }
+
     .speakers-container {
         display: grid;
         grid-gap: 16px;
