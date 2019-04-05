@@ -39,8 +39,8 @@ function openDialog(id, isTalk) {
         if (isTalk) {
             speakerInfoContainer.style.display = 'none';
             coSpeakerText.style.display = 'none';
-            talkSpeakerContainer.innerHTML = speaker.talk.speakers.map(it => 
-            `<div class="speaker-container">
+            talkSpeakerContainer.innerHTML = speaker.talk.speakers.map(it =>
+                `<div class="speaker-container">
                 <img class="speaker-photo" src="${it.photoUrl}" alt="${it.name}">
                 <div class="speaker-text">
                     <h3 class="name mdc-typography--headline3">${it.name}</h3>
@@ -56,7 +56,7 @@ function openDialog(id, isTalk) {
             } else {
                 coSpeakerText.style.display = 'none';
             }
-            talkSpeakerContainer.innerHTML = coSpeakers.map(it => 
+            talkSpeakerContainer.innerHTML = coSpeakers.map(it =>
                 `<div class="speaker-container">
                     <img class="speaker-photo" src="${it.photoUrl}" alt="${it.name}">
                     <div class="speaker-text">
@@ -168,11 +168,11 @@ function talkToDiv(talk) {
             <h2 class="talk-name mdc-typography--headline2">${talk.title}</h2>
             <div class="topics-container">
             ${talk.topics.map(topic =>
-                `<div class="topic">
+        `<div class="topic">
                         <div class="topic-dot" style="background-color: ${topic.color}"></div>
                         <p class="topic-name mdc-typography--body1">${topic.text}</p>
                     </div>`
-            ).join('')}
+    ).join('')}
             </div>
             <div class="mobile-description">
             <p class="mobile-description-text mdc-typography--body1">${talk.time} / ${talk.room}</p>
@@ -182,7 +182,7 @@ function talkToDiv(talk) {
             </div>
             <div class="speakers-container speakers-container-${talk.speakers.length}">
                 ${talk.speakers.map(speaker =>
-                    `<div class="speaker-container">
+        `<div class="speaker-container">
                         <img class="speaker-photo" src="${speaker.photoUrl}" alt="${speaker.name}">
                         <div class="speaker-text">
                             <h3 class="name mdc-typography--headline3">${speaker.name}</h3>
