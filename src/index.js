@@ -45,6 +45,7 @@ function openDialog(id, isTalk) {
                 <div class="speaker-text">
                     <h3 class="name mdc-typography--headline3">${it.name}</h3>
                     ${it.position && !it.company && `<h4 class="position mdc-typography--headline4">${it.position}</h4>` || ''}
+                    ${!it.position && it.company && `<h4 class="position mdc-typography--headline4">${it.company}</h4>` || ''}
                     ${it.position && it.company && `<h4 class="position mdc-typography--headline4">${it.position}, ${it.company}</h4>` || ''}
                 </div>
             </div>`).join('');
@@ -62,11 +63,16 @@ function openDialog(id, isTalk) {
                     <div class="speaker-text">
                         <h3 class="name mdc-typography--headline3">${it.name}</h3>
                         ${it.position && !it.company && `<h4 class="position mdc-typography--headline4">${it.position}</h4>` || ''}
+                        ${!it.position && it.company && `<h4 class="position mdc-typography--headline4">${it.company}</h4>` || ''}
                         ${it.position && it.company && `<h4 class="position mdc-typography--headline4">${it.position}, ${it.company}</h4>` || ''}
                     </div>
                 </div>`).join('');
             name.innerText = speaker.name;
-            position.innerHTML = speaker.position + (speaker.company ? ', ' + speaker.company : '');
+            if (speaker.position) {
+                position.innerHTML = speaker.position + (speaker.company ? ', ' + speaker.company : '');
+            } else {
+                position.innerHTML = speaker.company || '';
+            }
             photo.src = speaker.photoUrl;
             if (speaker.companyLogo) {
                 companyLogo.style.display = 'block';
