@@ -70,3 +70,9 @@
         grid-template-columns: repeat(4, $speaker-card-width);
     }
 }
+
+@media screen and (min-width: 1440px) {
+    .speakers-section .speakers-container {
+        grid-template-columns: repeat(5, $speaker-card-width);
+    }
+}
