@@ -21,6 +21,7 @@ const speakers = {};
 const talks = {};
 
 fetchSpeakersAndTalks();
+fetchTimes();
 
 function openDialog(id, isTalk) {
     const dialog = new MDCDialog(document.querySelector('.mdc-dialog'));
@@ -237,12 +238,23 @@ function fetchSpeakersAndTalks() {
                 data.talk = talk.data();
                 data.talk.id = talk.id;
                 speakers[doc.id] = data;
-                data.talk.mobileRow = (data.talk.row - 2) * 2 + data.talk.column + 1;
                 speakersContainer.appendChild(speakerToDiv(data, doc));
                 if (!talk.empty) {
                     updateTalks();
                 }
             }).catch(error => console.log("Error getting documents: ", error));
+        }))
+        .catch(error => console.log("Error getting documents: ", error));
+}
+
+function fetchTimes() {
+    const timesContainer = document.getElementById('times-container');
+    db.collection('times').orderBy('position')
+        .get()
+        .then(querySnapshot => querySnapshot.forEach(doc => {
+            const data = doc.data();
+            console.log(data);
+            timesContainer.innerHTML += `<p class="time mdc-typography--headline4">${data.time}</p>`;
         }))
         .catch(error => console.log("Error getting documents: ", error));
 }
