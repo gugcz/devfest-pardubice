@@ -7,7 +7,6 @@
     display: grid;
     justify-content: center;
     color: $black-text-color;
-    min-height: calc(100vh - 64px);
     justify-items: center;
 
     .schedule-container {
@@ -25,11 +24,17 @@
                 box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
                 border-radius: 24px 8px;
                 padding: 16px;
+
+                @for $i from 1 through 15 {
+                    &.row-#{$i} {
+                        grid-row: $i;
+                    }
+                }
             }
 
             .schedule-item {
                 cursor: default;
-                grid-row: 1;
+                width: 100%;
 
                 .item-name {
                     font-size: 1.25rem;
@@ -42,6 +47,10 @@
                 &.track {
                     border: none;
                     box-shadow: none;
+                }
+
+                &.disable-hover::before {
+                    background-color: white;
                 }
             }
 
@@ -109,12 +118,6 @@
     }
 }
 
-@media screen and (min-width: 500px) {
-    .schedule-section .schedule-container .talks-container .talk .speakers-container-2 {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
 @media screen and (max-width: 767px) {
     .no-mobile {
         display: none;
@@ -146,41 +149,16 @@
         left: -40px;
 
         .talks-container {
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 57px 57px 57px 1fr 1fr 57px 1fr 1fr 57px 57px;
-
-            .full-column {
-                grid-column: 1 / span 2;
-            }
+            grid-template-rows: 57px 57px 1fr 1fr 1fr 1fr 57px 1fr 1fr 1fr 57px 1fr 1fr 1fr 57px;
 
             .mobile-description {
                 display: none;
-            }
-
-            .column-1 {
-                grid-column: 1;
-            }
-
-            .column-2 {
-                grid-column: 2;
-            }
-            
-            @for $i from 1 through 10 {
-                .row-#{$i} {
-                    grid-row: $i;
-                }
-            }
-
-            @for $i from 2 through 10 {
-                .row-end-#{$i} {
-                    grid-row-end: $i;
-                }
             }
         }
     
         .times-container {
             display: grid;
-            grid-template-rows: 57px 57px 57px 1fr 1fr 57px 1fr 1fr 57px 57px;
+            grid-template-rows: 57px 57px 1fr 1fr 1fr 1fr 57px 1fr 1fr 1fr 57px 1fr 1fr 1fr 57px;
             grid-row-gap: 16px;
     
             .time {

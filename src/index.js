@@ -22,6 +22,7 @@ const talks = {};
 
 fetchSpeakersAndTalks();
 fetchTimes();
+fetchSchedule();
 
 function openDialog(id, isTalk) {
     const dialog = new MDCDialog(document.querySelector('.mdc-dialog'));
@@ -169,23 +170,24 @@ function speakerToDiv(data, doc) {
 
 function talkToDiv(talk) {
     const div = document.createElement('div');
-    div.className = 'mdc-card mdc-card--outlined mdc-card__primary-action mdc-ripple-upgraded talk ' + (talk.full ? 'full ' : ('column-' + talk.column + ' ')) + 'row-' + talk.row + ' mobile-row-' + talk.mobileRow + (talk.rowSpan ? ' row-end-' + (talk.row + talk.rowSpan) : '');
+    div.className = 'mdc-card mdc-card--outlined mdc-card__primary-action mdc-ripple-upgraded talk row-' + talk.position;
     div.onclick = () => openDialog(talk.speakers[0].id, true);
     div.innerHTML = `
             <h2 class="talk-name mdc-typography--headline2">${talk.title}</h2>
-            <div class="topics-container">
+            
+            ${talk.topics && `<div class="topics-container">
             ${talk.topics.map(topic =>
         `<div class="topic">
                         <div class="topic-dot" style="background-color: ${topic.color}"></div>
                         <p class="topic-name mdc-typography--body1">${topic.text}</p>
                     </div>`
     ).join('')}
-            </div>
+            </div>` || ''}
             <div class="mobile-description">
-            <p class="mobile-description-text mdc-typography--body1">${talk.time} / ${talk.room}</p>
+                <p class="mobile-description-text mdc-typography--body1">${talk.time}</p>
             </div>
             <div class="description">
-            <p class="description-text mdc-typography--body1">${talk.level} / ${talk.language} / ${talk.length}</p>
+                <p class="description-text mdc-typography--body1">${talk.room} / ${talk.duration}</p>
             </div>
             <div class="speakers-container speakers-container-${talk.speakers.length}">
                 ${talk.speakers.map(speaker =>
@@ -239,9 +241,7 @@ function fetchSpeakersAndTalks() {
                 data.talk.id = talk.id;
                 speakers[doc.id] = data;
                 speakersContainer.appendChild(speakerToDiv(data, doc));
-                if (!talk.empty) {
-                    updateTalks();
-                }
+                updateTalks();
             }).catch(error => console.log("Error getting documents: ", error));
         }))
         .catch(error => console.log("Error getting documents: ", error));
@@ -253,8 +253,21 @@ function fetchTimes() {
         .get()
         .then(querySnapshot => querySnapshot.forEach(doc => {
             const data = doc.data();
-            console.log(data);
             timesContainer.innerHTML += `<p class="time mdc-typography--headline4">${data.time}</p>`;
+        }))
+        .catch(error => console.log("Error getting documents: ", error));
+}
+
+function fetchSchedule() {
+    const talksContainer = document.getElementById('talks-container');
+    db.collection('schedule')
+        .get()
+        .then(querySnapshot => querySnapshot.forEach(doc => {
+            const item = doc.data();
+            talksContainer.innerHTML +=
+                `<div class="mdc-card mdc-card--outlined mdc-card__primary-action mdc-ripple-upgraded schedule-item disable-hover row-${item.position}">
+                    <h2 class="item-name mdc-typography--headline2">${item.title}</h2>
+                </div>`;
         }))
         .catch(error => console.log("Error getting documents: ", error));
 }
