@@ -23,6 +23,7 @@ const talks = {};
 fetchSpeakersAndTalks();
 fetchTimes();
 fetchSchedule();
+fetchPartners();
 
 function openDialog(id, isTalk) {
     const dialog = new MDCDialog(document.querySelector('.mdc-dialog'));
@@ -268,6 +269,23 @@ function fetchSchedule() {
                 `<div class="mdc-card mdc-card--outlined mdc-card__primary-action mdc-ripple-upgraded schedule-item disable-hover row-${item.position}">
                     <h2 class="item-name mdc-typography--headline2">${item.title}</h2>
                 </div>`;
+        }))
+        .catch(error => console.log("Error getting documents: ", error));
+}
+
+function fetchPartners() {
+    const partnersContainer = document.getElementById('partners-container');
+    db.collection('partners')
+        .orderBy('position')
+        .get()
+        .then(querySnapshot => querySnapshot.forEach(doc => {
+            const partner = doc.data();
+            console.log(partner);
+            partnersContainer.innerHTML += `<div class="logo-container">
+                <a href="${partner.url}" class="logo-link" target="_blank">
+                    <img class="logo" src="${partner.logoUrl}" alt="${partner.name}">
+                </a>
+            </div`;
         }))
         .catch(error => console.log("Error getting documents: ", error));
 }
