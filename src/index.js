@@ -26,7 +26,7 @@ fetchSchedule();
 fetchPartners();
 
 function openDialog(id, isTalk) {
-    const dialog = new MDCDialog(document.querySelector('.mdc-dialog'));
+    const dialog = new MDCDialog(document.querySelector('.mdc-dialog.speaker-dialog'));
     dialog.listen('MDCDialog:opened', () => {
         const speaker = speakers[id];
         const name = document.getElementById('dialog-speaker-name');
@@ -153,6 +153,24 @@ function openDialog(id, isTalk) {
     dialog.open();
 }
 
+function openInfoDialog(data) {
+    const dialog = new MDCDialog(document.querySelector('.mdc-dialog.info-dialog'));
+    dialog.listen('MDCDialog:opened', () => {
+        const scheduleItemTitle = document.getElementById('js-schedule-item-title');
+        const scheduleItemText = document.getElementById('js-schedule-item-text');
+        scheduleItemTitle.innerText = data.title;
+        scheduleItemText.innerText = data.text;
+    });
+
+    dialog.listen('MDCDialog:closed', () => {
+        const scheduleItemTitle = document.getElementById('js-schedule-item-title');
+        const scheduleItemText = document.getElementById('js-schedule-item-text');
+        scheduleItemTitle.innerText = '';
+        scheduleItemText.innerText = '';
+    });
+    dialog.open();
+}
+
 function speakerToDiv(data, doc) {
     const div = document.createElement('div');
     div.className = 'mdc-card mdc-card--outlined speaker mdc-card__primary-action mdc-ripple-upgraded speaker-' + data.order;
@@ -265,10 +283,11 @@ function fetchSchedule() {
         .get()
         .then(querySnapshot => querySnapshot.forEach(doc => {
             const item = doc.data();
-            talksContainer.innerHTML +=
-                `<div class="mdc-card mdc-card--outlined mdc-card__primary-action mdc-ripple-upgraded schedule-item disable-hover row-${item.position}">
-                    <h2 class="item-name mdc-typography--headline2">${item.title}</h2>
-                </div>`;
+            const div = document.createElement('div');
+            div.className = `mdc-card mdc-card--outlined mdc-card__primary-action mdc-ripple-upgraded schedule-item row-${item.position}`;
+            div.onclick = () => openInfoDialog(item);
+            div.innerHTML +=`<h2 class="item-name mdc-typography--headline2">${item.title}</h2>`;
+            talksContainer.appendChild(div);
         }))
         .catch(error => console.log("Error getting documents: ", error));
 }
@@ -280,7 +299,6 @@ function fetchPartners() {
         .get()
         .then(querySnapshot => querySnapshot.forEach(doc => {
             const partner = doc.data();
-            console.log(partner);
             partnersContainer.innerHTML += `<div class="logo-container">
                 <a href="${partner.url}" class="logo-link" target="_blank">
                     <img class="logo" src="${partner.logoUrl}" alt="${partner.name}">
